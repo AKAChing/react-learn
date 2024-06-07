@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState, useEffect, useRef } from "react";
+import Arco from '@arco-design/mobile-react';
 function App() {
+  
+  let form = {
+    name: "111",
+    radio1: 1,
+    select1: 1,
+    switch1: "checked",
+  };
+  const formRef = useRef();
+  let [formData, setFormData] = useState(form);
+  const onValuesChange = (changeValue, values) => {
+    setFormData({ ...formData, ...values });
+    // console.log('onValuesChange: ', changeValue, values);
+  };
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      
     </div>
   );
 }
