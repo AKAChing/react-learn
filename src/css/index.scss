@@ -1,0 +1,19 @@
+.name {
+  font-size: 1.5rem;
+  color: red;
+}
+
+
+.comment {
+  font-size: 14px;
+  display: flex;
+  flex-direction: column;
+  &-item {
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    padding: 4px;
+    margin-bottom: 2px;
+    display: flex;
+    
+  }
+}
