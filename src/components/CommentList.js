@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import comment from '../data/comment'
 import classNames from 'classnames'
-export default function CommentList() {
+export default function CommentList(props) {
 	const tabList = [
 		{
 			id: 1,
@@ -15,6 +15,7 @@ export default function CommentList() {
 	const [commentList, setCommentList] = useState(comment)
 	const [activeTab, setActiveTab] = useState(1)
 	const deleteComment = id => {
+		// props.myfn()
 		if (window.confirm('确定要删除吗?')) {
 			const newData = commentList.filter(item => {
 				return item.id !== id
@@ -39,6 +40,7 @@ export default function CommentList() {
 	}
 	return (
 		<div className="App">
+			{/* {props.str} */}
 			<div className="flex flex-col">
 				<div className="flex m-2 text-sm cursor-pointer items-center">
 					{tabList.map(tab => (
