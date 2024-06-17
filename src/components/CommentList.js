@@ -1,58 +1,50 @@
-import { useState, useEffect, useRef } from 'react'
-import comment from '../data/comment'
+import { useEffect} from 'react'
 import classNames from 'classnames'
+import { useSelector, useDispatch } from 'react-redux'
+import { setActive } from '../store/modules/channelStore'
+import { getCommentList, deleteCommentById } from '../store/modules/commentStore'
 export default function CommentList(props) {
-	const tabList = [
-		{
-			id: 1,
-			name: '最新',
-		},
-		{
-			id: 2,
-			name: '最热',
-		},
-	]
-	const [commentList, setCommentList] = useState(comment)
-	const [activeTab, setActiveTab] = useState(1)
+	const { activeIndex, channeList } = useSelector(state => state.channel)
+	const { commentList } = useSelector(state => state.comment)
+	const dispatch = useDispatch()
 	const deleteComment = id => {
-		// props.myfn()
+		console.log(id);
 		if (window.confirm('确定要删除吗?')) {
-			const newData = commentList.filter(item => {
-				return item.id !== id
-			})
-			setCommentList(newData)
+			dispatch(deleteCommentById(id))
 		}
 	}
 	useEffect(() => {
-		// console.log(activeTab)
-	}, [activeTab, commentList])
+		dispatch(getCommentList())
+	}, [activeIndex, dispatch])
 	const tabChange = index => {
-		setActiveTab(index)
-		setCommentList(
-			commentList.sort((a, b) => {
-				if (activeTab === 1) {
-					return b.id - a.id
-				} else {
-					return a.id - b.id
-				}
-			})
-		)
+		dispatch(setActive(index))
+		// dispatch(setList(commentList))
+		// setActiveTab(index)
+		// setCommentList(
+		// 	commentList.sort((a, b) => {
+		// 		if (activeTab === 1) {
+		// 			return b.id - a.id
+		// 		} else {
+		// 			return a.id - b.id
+		// 		}
+		// 	})
+		// )
 	}
 	return (
 		<div className="App">
 			{/* {props.str} */}
 			<div className="flex flex-col">
 				<div className="flex m-2 text-sm cursor-pointer items-center">
-					{tabList.map(tab => (
+					{channeList.map(tab => (
 						<div
 							className={classNames({
-								'ml-2': tab.id === 2,
-								'text-lg': activeTab === tab.id,
+								'ml-2': tab.id !== 1,
+								'text-lg': activeIndex === tab.id,
 							})}
 							key={tab.id}
 							onClick={index => tabChange(tab.id)}
 						>
-							最新
+							{tab.name}
 						</div>
 					))}
 				</div>

@@ -1,16 +1,14 @@
 import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
+import dayjs from 'dayjs'
 
 export default function ReactiveInput(props) {
 	let [inputValue, setInputValue] = useState(props.defaultValue || '')
 	const inputRef = useRef(null)
-	// console.log(props)
 	const getRef = () => {
 		props.inputChange(inputValue)
-		// inputChange(inputValue)
 		setInputValue('')
 		inputRef.current.focus()
-		// console.log(inputRef.current);
 	}
 	const change = e => {
 		setInputValue(e.target.value)
@@ -35,8 +33,6 @@ export default function ReactiveInput(props) {
 					onClick={getRef}
 				>
 					{props.span}
-					{/* {props.children} */}
-					{/* 发送 */}
 				</button>
 			</div>
 
