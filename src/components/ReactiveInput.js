@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import PropTypes from 'prop-types'
 import dayjs from 'dayjs'
 
-export default function ReactiveInput(props) {
+const ReactiveInput = (props) => {
 	let [inputValue, setInputValue] = useState(props.defaultValue || '')
 	const inputRef = useRef(null)
 	const getRef = () => {
@@ -46,3 +46,5 @@ ReactiveInput.propTypes = {
 	inputChange: PropTypes.func.isRequired,
 	defaultValue: PropTypes.string,
 }
+
+export default ReactiveInput

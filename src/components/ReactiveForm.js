@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { createComment } from '../store/modules/commentStore'
 
-export default function ReactiveForm() {
+const ReactiveForm = () => {
 	const dispatch = useDispatch()
 	let [formData, setFormData] = useState({
 		name: '',
@@ -57,3 +57,5 @@ export default function ReactiveForm() {
 		</div>
 	)
 }
+
+export default ReactiveForm

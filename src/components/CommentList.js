@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { useSelector, useDispatch } from 'react-redux'
 import { setActive } from '../store/modules/channelStore'
 import { getCommentList, deleteCommentById } from '../store/modules/commentStore'
-export default function CommentList(props) {
+const CommentList = (props) => {
 	const { activeIndex, channeList } = useSelector(state => state.channel)
 	const { commentList } = useSelector(state => state.comment)
 	const dispatch = useDispatch()
@@ -86,3 +86,6 @@ export default function CommentList(props) {
 		</div>
 	)
 }
+
+
+export default CommentList
